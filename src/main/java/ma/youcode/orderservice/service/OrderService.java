@@ -14,14 +14,15 @@ public class OrderService {
     @Autowired
     private OrderRepository orderRepository;
 
+    @Autowired
     private RestTemplate restTemplate;
 
     public TransactionResponse saveOrder(TransactionRequest transactionRequest){
         String response = "";
         Order order = transactionRequest.getOrder();
         PaymentDto paymentDto = transactionRequest.getPaymentDto();
-        paymentDto.setPaymentId(order.getId());
-        paymentDto.setAmount(paymentDto.getAmount());
+        paymentDto.setOrderId(order.getId());
+        paymentDto.setAmount(order.getPrice());
         // rest call ot be changed after to eureka
         PaymentDto paymentResponse = restTemplate.postForObject(
         "http://localhost:9191/payment/ensurePayment",
@@ -30,6 +31,7 @@ public class OrderService {
         );
 // to remove that hard coded error msgs hestrix will do the job
 
+        assert paymentResponse != null;
                response = paymentResponse.getPaymentStatus().equals(
                         "success"
                 ) ? "payment processing successful and the order placed successfully" :
