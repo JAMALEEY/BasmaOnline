@@ -2,6 +2,8 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cloud-gateway" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/hystrix-dashboard" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/order-service" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/payment-service" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/registry-service" vcs="Git" />

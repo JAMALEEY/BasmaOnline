@@ -7,17 +7,22 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="registry-service" />
         <module name="order-service" />
         <module name="payment-service" />
+        <module name="registry-service" />
+        <module name="cloud-gateway" />
+        <module name="hystrix-dashboard" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="order-service" options="-parameters --add-modules java.base" />
-      <module name="payment-service" options="-parameters --add-modules java.base" />
-      <module name="registry-service" options="-parameters --add-modules java.base" />
+      <module name="cloud-gateway" options="-parameters --add-modules java.base" />
+      <module name="gateway-cloud" options="--add-modules java.base" />
+      <module name="hystrix-dashboard" options="-parameters --add-modules java.base" />
+      <module name="order-service" options="-parameters" />
+      <module name="payment-service" options="-parameters" />
+      <module name="registry-service" options="-parameters" />
     </option>
   </component>
 </project>
