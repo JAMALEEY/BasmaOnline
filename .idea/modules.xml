@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/BasmaOnline.iml" filepath="$PROJECT_DIR$/.idea/BasmaOnline.iml" />
-      <module fileurl="file://$PROJECT_DIR$/registry-service/registry-service.iml" filepath="$PROJECT_DIR$/registry-service/registry-service.iml" />
     </modules>
   </component>
 </project>
