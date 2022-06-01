@@ -24,10 +24,11 @@ public class OrderService {
         paymentDto.setOrderId(order.getId());
         paymentDto.setAmount(order.getPrice());
         // rest call ot be changed after to eureka
+        //        "http://localhost:9191/payment/ensurePayment",
         PaymentDto paymentResponse = restTemplate.postForObject(
-        "http://localhost:9191/payment/ensurePayment",
-        paymentDto,
-        PaymentDto.class
+                "http://PAYMENT-SERVICE/payment/ensurePayment",
+                paymentDto,
+                PaymentDto.class
         );
 // to remove that hard coded error msgs hestrix will do the job
 
