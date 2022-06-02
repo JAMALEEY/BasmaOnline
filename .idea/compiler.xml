@@ -18,8 +18,8 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="cloud-config-server" options="-parameters" />
-      <module name="cloud-gateway" options="-parameters" />
+      <module name="cloud-config-server" options="-parameters --add-modules java.base" />
+      <module name="cloud-gateway" options="-parameters --add-modules java.base" />
       <module name="gateway-cloud" options="--add-modules java.base" />
       <module name="hystrix-dashboard" options="-parameters" />
       <module name="order-service" options="-parameters --add-modules java.base" />
