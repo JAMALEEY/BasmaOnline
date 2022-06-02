@@ -6,16 +6,24 @@ import ma.youcode.orderservice.commons.TransactionResponse;
 import ma.youcode.orderservice.entity.Order;
 import ma.youcode.orderservice.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
+@RefreshScope
 public class OrderService {
     @Autowired
     private OrderRepository orderRepository;
 
     @Autowired
+    @Lazy
     private RestTemplate restTemplate;
+
+    @Value("${microservice.payment-service.endpoints.endpoint.uri}")
+    private String ENDPOINT_URL;;
 
     public TransactionResponse saveOrder(TransactionRequest transactionRequest){
         String response = "";
@@ -25,11 +33,7 @@ public class OrderService {
         paymentDto.setAmount(order.getPrice());
         // rest call ot be changed after to eureka
         //        "http://localhost:9191/payment/ensurePayment",
-        PaymentDto paymentResponse = restTemplate.postForObject(
-                "http://PAYMENT-SERVICE/payment/ensurePayment",
-                paymentDto,
-                PaymentDto.class
-        );
+        PaymentDto paymentResponse = restTemplate.postForObject(ENDPOINT_URL, paymentDto, PaymentDto.class);
 // to remove that hard coded error msgs hestrix will do the job
 
         assert paymentResponse != null;
