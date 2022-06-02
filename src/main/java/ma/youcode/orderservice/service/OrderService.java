@@ -1,10 +1,14 @@
 package ma.youcode.orderservice.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import ma.youcode.orderservice.commons.PaymentDto;
 import ma.youcode.orderservice.commons.TransactionRequest;
 import ma.youcode.orderservice.commons.TransactionResponse;
 import ma.youcode.orderservice.entity.Order;
 import ma.youcode.orderservice.repository.OrderRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -24,13 +28,17 @@ public class OrderService {
 
     @Value("${microservice.payment-service.endpoints.endpoint.uri}")
     private String ENDPOINT_URL;;
+    // centralize logging using ELK stack in microservice architecture
+    private Logger log = LoggerFactory.getLogger(OrderService.class);
 
-    public TransactionResponse saveOrder(TransactionRequest transactionRequest){
+    public TransactionResponse saveOrder(TransactionRequest transactionRequest) throws JsonProcessingException {
         String response = "";
         Order order = transactionRequest.getOrder();
         PaymentDto paymentDto = transactionRequest.getPaymentDto();
         paymentDto.setOrderId(order.getId());
         paymentDto.setAmount(order.getPrice());
+
+        log.info("OrderService request : {}", new ObjectMapper().writeValueAsString(transactionRequest));
         // rest call ot be changed after to eureka
         //        "http://localhost:9191/payment/ensurePayment",
         PaymentDto paymentResponse = restTemplate.postForObject(ENDPOINT_URL, paymentDto, PaymentDto.class);

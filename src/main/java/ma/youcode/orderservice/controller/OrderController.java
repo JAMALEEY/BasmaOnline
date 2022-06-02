@@ -1,5 +1,6 @@
 package ma.youcode.orderservice.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import ma.youcode.orderservice.commons.PaymentDto;
 import ma.youcode.orderservice.commons.TransactionRequest;
 import ma.youcode.orderservice.commons.TransactionResponse;
@@ -20,7 +21,7 @@ public class OrderController {
     private OrderService orderService;
 
     @PostMapping("/productOrder")
-    public TransactionResponse productOrder(@RequestBody TransactionRequest transactionRequest){
+    public TransactionResponse productOrder(@RequestBody TransactionRequest transactionRequest) throws JsonProcessingException {
 //        Order order = transactionRequest.getOrder();
 //        PaymentDto paymentDto = transactionRequest.getPaymentDto();
 //        paymentDto.setPaymentId(order.getId());
