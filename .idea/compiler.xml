@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="order-service" />
         <module name="payment-service" />
+        <module name="cloud-config-server" />
         <module name="registry-service" />
         <module name="cloud-gateway" />
         <module name="hystrix-dashboard" />
@@ -17,10 +18,11 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="cloud-gateway" options="-parameters --add-modules java.base" />
+      <module name="cloud-config-server" options="-parameters" />
+      <module name="cloud-gateway" options="-parameters" />
       <module name="gateway-cloud" options="--add-modules java.base" />
-      <module name="hystrix-dashboard" options="-parameters --add-modules java.base" />
-      <module name="order-service" options="-parameters" />
+      <module name="hystrix-dashboard" options="-parameters" />
+      <module name="order-service" options="-parameters --add-modules java.base" />
       <module name="payment-service" options="-parameters" />
       <module name="registry-service" options="-parameters" />
     </option>
